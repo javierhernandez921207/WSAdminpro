@@ -4,18 +4,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WSAdminPro.Models
 {
-    public partial class adminproContext : DbContext
+    public partial class AdminproContext : DbContext
     {
-        public adminproContext()
+        public AdminproContext()
         {
         }
 
-        public adminproContext(DbContextOptions<adminproContext> options)
+        public AdminproContext(DbContextOptions<AdminproContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,31 +28,31 @@ namespace WSAdminPro.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Usuario>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("usuario");
+                entity.ToTable("user");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Apellidos)
+                entity.Property(e => e.Age).HasColumnName("age");
+
+                entity.Property(e => e.LastName)
                     .IsRequired()
-                    .HasColumnName("apellidos")
+                    .HasColumnName("last_name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Edad).HasColumnName("edad");
-
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasColumnName("nombre")
+                    .HasColumnName("name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.User)
+                entity.Property(e => e.UserName)
                     .IsRequired()
-                    .HasColumnName("user")
+                    .HasColumnName("user_name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });

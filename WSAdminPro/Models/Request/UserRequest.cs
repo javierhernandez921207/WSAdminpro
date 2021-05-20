@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace WSAdminPro.Models.Request
 {
-    public class UsuarioRequest
+    public class UserRequest
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string User { get; set; }
-        public string Apellidos { get; set; }
-        public int Edad { get; set; }
+        public string Name { get; set; }
+        public string UserName { get; set; }
+        public string LastNane { get; set; }
+        public int Age { get; set; }
     }
 }

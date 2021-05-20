@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace WSAdminPro.Models.Response
 {
-    public class Respuesta
+    public class Response
     {
-        public int Exito { get; set; }
+        public int Success { get; set; }
 
-        public string Mensaje { get; set; }
+        public string Msg { get; set; }
 
         public Object Data { get; set; }
 
-        public Respuesta()
+        public Response()
         {
-            this.Exito = 0;
+            this.Success = 0;
         }
     }
 }
