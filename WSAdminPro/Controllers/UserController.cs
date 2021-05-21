@@ -46,7 +46,6 @@ namespace WSAdminPro.Controllers
             try
             {
                 User newUser = new User();
-                newUser.Id = userRequest.Id;
                 newUser.UserName = userRequest.UserName;
                 newUser.Name = userRequest.Name;
                 newUser.LastName = userRequest.LastName;
@@ -59,6 +58,45 @@ namespace WSAdminPro.Controllers
             {
                 response.Msg = ex.Message;
             }
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public IActionResult Edit(UserRequest userRequest)
+        {
+            Response response = new Response();
+            try
+            {
+                User editUser = adminproContext.User.Find(userRequest.Id);
+                editUser.UserName = userRequest.UserName;
+                editUser.Name = userRequest.Name;
+                editUser.LastName = userRequest.LastName;
+                editUser.Age = userRequest.Age;
+                //indicar que el objeto fue modificado.
+                adminproContext.Entry(editUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                adminproContext.SaveChanges();
+                response.Success = 1;
+            }
+            catch (Exception ex)
+            {
+                response.Msg = ex.Message;
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Response response = new Response();
+            try {
+                User deleteUser = adminproContext.User.Find(id);
+                adminproContext.Remove(deleteUser);
+                adminproContext.SaveChanges();
+                response.Success = 1;
+            } catch (Exception ex)
+            {
+                response.Msg = ex.Message;
+            }           
             return Ok(response);
         }
     }

@@ -34,7 +34,7 @@ namespace WSAdminPro.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Age).HasColumnName("age");
 
